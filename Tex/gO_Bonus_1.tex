@@ -78,23 +78,55 @@ Sommersemester 2018
 \end{table}
 
 \textbf{Aufgabe S1.1} \\
-(a) Für die eindimensionale Einschränkung $\phi_d(t)$ mit $d \neq 0$ gilt
+%(a) Sei $\bar{d} = (0, -1)^T \in \mathbb{R}^2 \backslash \{0\}$ dann folgt
+%\begin{equation}
+%	\phi_{\bar{d}}(t) = - t^2.
+%\end{equation}
+%Sei $(x^k) \subseteq \mathbb{R}$ eine Folge mit $x^k = k$ dann gilt $\lim_k \|x^k\|_1 \rightarrow \infty$ sowie
+%\begin{equation}
+%\label{eq:1.1}
+%	\lim\limits_{k} \phi_{\bar{d}} (x^k) = - \infty.
+%\end{equation}
+%Aus Gleichung \eqref{eq:1.1} folgt, dass die Bedingung der Definition 1.2.40 verletzt ist und damit insbesondere $\phi_{\bar{d}}$ %nicht koerziv ist. Damit ist insbesondere auch die eindimensionale Einschränkung $\phi_d(t)$ nicht für jedes $d \in %\mathbb{R}^2 \backslash \{0\}$ koerviz. Die Aussage aus der Aufgabe ist damit wiederlegt. \par
+%(a) Für die eindimensionale Einschränkung $\phi_d(t)$ mit $d \neq 0$ gilt
+%\begin{equation}
+%\label{eq:1.1.1}
+%	\begin{split}
+%		\lim\limits_{t \rightarrow +\infty} \phi_d(t) &= \lim\limits_{t \rightarrow +\infty} 2t^4d_1^2 - 3t^3d_1d_2^2+t^2d_2^2 = + \infty \\
+%		\lim\limits_{t \rightarrow -\infty} \phi_d(t) &= \lim\limits_{t \rightarrow -\infty} 2t^4d_1^2 - 3t^3d_1d_2^2+t^2d_2^2 = + \infty
+%	\end{split}
+%\end{equation}
+%da bei der Betrachtung der Grenzwerte jeweils der Term mit dem höchsten Exponenten maßgeblich ist. Hier bedeutet dies, dass für $d_1 \neq 0$ der Grenzwert der eindimensionalen Einschränkung durch $2t^4d_1^2$ bestimt wird, welcher für $t \rightarrow \pm \infty$ gegen $+ \infty$ geht. Für $d_1=0$ folgt aus $d \neq 0$ das $d_2 \neq 0$ und damit $\phi_d(t)=t^2d_2^2$ was offensichtlich auch für $t \rightarrow \pm \infty$ gegen $+ \infty$ geht. Sei nun $(x^k) \subseteq \R$ eine Folge mit $lim_k ||x^k||_1 \rightarrow \infty$ dann folgt aus \eqref{eq:1.1.1} auch
+%\begin{equation}
+%\label{eq:1.1.2}
+%	\lim\limits_{k} \phi_d(x^k) = + \infty.
+%\end{equation}
+%Gleichung \eqref{eq:1.1.2} gilt, da aus der Verwendung der 1-Norm und der Eindimensionalität der Folgeglieder $x^k$ folgt, dass für $||x^k||_1 \rightarrow \infty$ die Folgeglieder $x^k \rightarrow \pm \infty$ gehen müssen. Dabei sei angemerkt, dass die 1-Norm verwendet werden kann, da alle Normen äquivalent sind. Nach Definition 1.2.40 ist die eindimensionale Einschränkung $\phi_d(t)$ damit für jede Richtung $d \in \mathbb{R}^2 \backslash \{0\}$ koerziv. \par
+(a) Sei $(x^k) \subseteq \mathbb{R}$ eine Folge mit $\lim_k \| x^k \| = \infty$ und $d \in \mathbb{R}^2 \backslash \{0\}$. Für die eindimensionale Einschränkung gilt 
+\begin{equation*}
+	\phi_d(t) = 2t^4d_1^2 - 3t^3d_1d_2^2 + t^2 d_2^2.
+\end{equation*}
+\textit{Fall 1:} $d_1 \neq 0, d_2 \neq 0$
 \begin{equation}
-	\begin{split}
-		\lim\limits_{t \rightarrow +\infty} \phi_d(t) &= \lim\limits_{t \rightarrow +\infty} 2t^4d_1^2 - 3t^3d_1d_2^2+t^2d_2 = + \infty \\
-		\lim\limits_{t \rightarrow -\infty} \phi_d(t) &= \lim\limits_{t \rightarrow -\infty} 2t^4d_1^2 - 3t^3d_1d_2^2+t^2d_2 = + \infty
-	\end{split}
+	\lim\limits_{k} \phi_d(x^k) + \infty,
 \end{equation}
-da bei der Betrachtung der Grenzwerte jeweils der Term mit dem höchsten Exponenten maßgeblich ist. Hier bedeutet dies, dass für $d_1 \neq 0$ der Grenzwert der eindimensionalen Einschränkung durch $2t^4d_1^2$ bestimt wird, welcher für $t \rightarrow \pm \infty$ gegen $+ \infty$ geht. Für $d_1=0$ folgt aus $d \neq 0$ das $d_2 \neq 0$ und damit $\phi_d(t)=t^2d_2$ was offensichtlich auch für $t \rightarrow \pm \infty$ gegen $+ \infty$ geht. Sei nun $(x^k) \subseteq \R$ eine Folge mit $lim_k ||x^k||_1 \rightarrow \infty$ dann folgt aus (1) auch
+da der Grenzwert von dem Term mit dem höchsten Exponenten bestimmt wird. Unter Verwendung der 1-Norm folgt aus $\lim_k \| x^k \|_1 = \infty$ das $x^k \rightarrow \pm \infty$ und damit auch $2t^4d_1^2 \rightarrow + \infty$. Damit ist $\phi_d(t)$ koerziv. \par
+\textit{Fall 2:} $d_1 = 0, d_2 \neq 0$
 \begin{equation}
-	\lim\limits_{k} \phi_d(x^k) = + \infty.
+	\phi_d(t) = t^2d_2^2.
 \end{equation}
-Gleichung (2) gilt, da aus der Verwendung der 1-Norm und der Eindimensionalität der Folgeglieder $x^k$ folgt, dass für $||x^k||_1 \rightarrow \infty$ die Folgeglieder $x^k \rightarrow \pm \infty$ gehen müssen. Nach Definition 1.2.40 ist die eindimensionale Einschränkung $\phi_d(t)$ damit für jede Richtung $d \in \mathbb{R}^2 \backslash \{0\}$ koerziv. \par
+Die Koerzivität für $\phi_d(t)$ folgt mit der gleichen Argumentation wie in Fall 1. \par
+\textit{Fall 3:} $d_1 \neq 0, d_2 = 0$
+\begin{equation}
+	\phi_d(t) = 2t^4d_1^2.
+\end{equation}
+Die Koerzivität für $\phi_d(t)$ folgt wieder mit der Argumentation aus Fall 1. Insgesamt folgt, dass die eindimensionale Einschränkung für alle $d \mathbb{R}^23 \backslash \{0\}$ koerziv ist.
+\par
 (b) Sei $(x^k) \subseteq \mathbb{R}^2$ eine Folge mit $x^k = (k^2, k)$. Dann gilt $\lim_k ||(x^k)||_1 = |k^2|+|k| \rightarrow \infty$. Für f gilt
 \begin{equation}
 	\lim\limits_{k} f(x^k) = \lim\limits_{k} (2k^2-k^2)(k^2-k^2) = 0,
 \end{equation}
-und damit dass eine Folge $(x^k) \in \mathbb{R}^2$ existiert mit $lim_k ||x^k||_1 \rightarrow \infty$ die die Bedingung $\lim_k f(x^k) 0 + \infty$ aus Definition 1.2.40 verletzt. Damit ist $f$ nicht koerziv. \par
+und damit dass eine Folge $(x^k) \in \mathbb{R}^2$ existiert mit $lim_k ||x^k||_1 \rightarrow \infty$ die die Bedingung $\lim_k f(x^k) = + \infty$ aus Definition 1.2.40 verletzt. Damit ist $f$ nicht koerziv. \par
 (c) Sei $f: M \rightarrow Y$ eine koerzive Funktion auf $M$ mit $Y \subseteq \mathbb{R}$. Dann gilt für eine Folge $(x^k) \subseteq M$ mit $\lim_{k} \Vert x^k \| = \infty$ nach Definition 1.2.40 auch
 \begin{equation*}
 \lim\limits_{k} f(x^k) = + \infty .
@@ -152,7 +184,7 @@ Da jede Nebenbedingung $\max\{z_1, z_2\} \leq \gamma$ in zwei Nebenbedingungen $
 	\end{split}
 \end{equation*}
 mit $2m$ Restriktionen umgeformt werden. \par
-(b) Sei $\beta = (a, b)^T \in \mathbb{R}^{n+1}$ und $\psi: \mathbb{R}_+ \rightarrow \mathbb{R}$ mit $\psi(y)=0.5y^2$, dann ist $\psi$ wegen $\psi'(y)=y > 0$ streng monoton wachsend auf dem Intervall $\left[0, \infty \right)$. Mithilfe der Funktion $\psi$ kann $P_2$ nun durch eine monotone Transformation (siehe Buch, Übung 1.3.5) in das äquivalente Problem $P_{2, MR}$ transformiert werden mit
+(b) Sei $\beta = (a, b)^T \in \mathbb{R}^{n+1}$ und $\psi: \mathbb{R}_+ \rightarrow \mathbb{R}$ mit $\psi(y)=0.5y^2$, dann ist $\psi$ wegen $\psi'(y)=y > 0$ streng monoton wachsend auf dem Intervall $\left[0, \infty \right)$. Mithilfe der Funktion $\psi$ kann $P_2$ nun durch eine monotone Transformation (siehe Buch, Übung 1.3.5) in das äquivalente Problem $P_{2, MR}$ stransformiert werden mit
 \begin{equation*}
 	P_{2, MR}:\min_{\beta \in \mathbb{R}^{n+1}} \frac{1}{2} \|X \beta - y \|_2^2.
 \end{equation*}
