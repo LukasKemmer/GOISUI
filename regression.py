@@ -84,3 +84,6 @@ plt.xlabel("x")
 plt.ylabel("y")
 plt.legend(['Data', 'Fit from P1', 'Fit from P2'])
 plt.show()
+
+# Note:     Wie zu erwarten reagiert P2 aufgrund des quadratischen Fehlerterms 
+#           sensibler auf das Hinzufügen von Ausreissern
