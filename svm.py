@@ -71,9 +71,9 @@ b = res.x[n]
 e = res.x[n+1:]
 
 # Make predictions
-pred = np.dot(X_test, w) + b
-y_pred[pred>=0] = 1
-y_pred[pred<0] = -1
+y_pred = np.dot(X_test, w) + b
+y_pred[y_pred>=0] = 1
+y_pred[y_pred<0] = -1
 
 # Calculate accuracy
 acc = np.sum(y_pred==y_test)/len(y_test)
