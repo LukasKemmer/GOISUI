@@ -70,7 +70,7 @@ Sommersemester 2018
 	\begin{tabularx}{\textwidth}{X X X}
 		Name & Matrikelnummer & Studiengang \\
 		\toprule
-		Leon Qadirie					& & Wi.Ing. (M.Sc)\\
+		Leon Qadirie					& 1720201 & Wi.Ing. (M.Sc)\\
 		Lukas Kemmer 				& 1725171			& Wi.Ing. (M.Sc)\\
 		\bottomrule
 	\end{tabularx}
@@ -145,7 +145,7 @@ Für die Verkettung $\psi \circ f$ folgt nun
 \end{equation}
 und damit insbesondere, dass die Definition 1.2.40 nicht erfüllt und somit $\psi \circ f$ nicht koerziv ist. Damit ist ein Gegenbeispiel gefunden und die Aussage ist falsch. \par
 \textbf{Aufgabe S1.2} \\
-(a) Sei $F: \mathbb{R}^m \rightarrow \mathbb{R}$ mit $F(y) = \sum_{i=1}^{m}y_i$, $\beta_1 = (a, b)^T \in \mathbb{R}^{n+1}$ sowie $f: \mathbb{R}^{n+1} \rightarrow \mathbb{R}^m$ mit 
+(a) Sei $F: \mathbb{R}^m \rightarrow \mathbb{R}$ mit $F(y) = \sum_{i=1}^{m}y_i$, $\beta_1 = (a^T, b^T)^T \in \mathbb{R}^{n+1}$ sowie $f: \mathbb{R}^{n+1} \rightarrow \mathbb{R}^m$ mit 
 \begin{equation*}
 	f(\beta_1) = 
 					\begin{pmatrix}
@@ -163,7 +163,7 @@ Das Problem $P1$ kann dann geschrieben werden als
 \begin{equation*}
 	P_1: \min_{\beta_1} F(f(\beta_1)).
 \end{equation*}
-Mithilfe der verallgemeinmerten Epigraph-Umformung ergibt sich analog zu Übung 3.5 das äquivalente Optimierungsproblem
+Wir merken an, dass $F$ als Summe monotoner Funktionen wiederum monoton ist. Mithilfe der verallgemeinerten Epigraph-Umformulierung ergibt sich analog zu Übung 3.5 (im Buch) das äquivalente Optimierungsproblem
 \begin{equation*}
 	P_{1, epi}:\min_{\alpha \in \mathbb{R}^m, \beta_1 \in \mathbb{R}^{n+1}} F(\alpha) \ s.t. \ f(\beta_1) \leq \alpha.
 \end{equation*}
@@ -229,16 +229,29 @@ Dabei sei angemerkt, dass $X^TX$ invertierbar ist, da $X$ vollen Spalten-Rang ha
 	\caption{\label{fig:21d} Ergebnisse der Regression mit Ausreissern mit $(a^1, b^2) = (2.97, -11.11)$ und $(a^2, b^2) = (1.82, -2.68)$.}
 \end{figure}
 \textbf{Aufgabe S1.3} \par
-Es gilt für $w=0, b=0, e=1, \ (w,b,e) \in M$ und damit $M\neq \emptyset$. Nun zeigen wir die Koerzivität der Zielfunktion $f: \mathbb{R}^{m+n+1} \rightarrow \mathbb{R}$, $f(w,b,e) = \frac{1}{m} \sum_{i=1}^{m}e_i + \lambda \|w \|_2^2$. Sei nun $(x^k) \subseteq M$ eine Folge mit 
+(a) Es gilt für $\bar{w}=0, \bar{b}=0, \bar{e}=1, \ (\bar{w}, \bar{b}, \bar{e}) \in M$ und damit $M\neq \emptyset$. Nun zeigen wir die Koerzivität der Zielfunktion $f: \mathbb{R}^{m+n+1} \rightarrow \mathbb{R}$, $f(w,b,e) = \frac{1}{m} \sum_{i=1}^{m}e_i + \lambda \|w \|_2^2$. Sei nun $(x^k) \subseteq M$ eine Folge mit 
 \begin{equation}
-	\lim\limits_{k} \| x^k \|_1 = \sum_{i=1}^{m}|e_i| + \sum_{i=1}^{n} |w_i| + |b|  \rightarrow \infty,
+	\lim\limits_{k} \| x^k \|_1 = \sum_{i=1}^{m}|e_i^k| + \sum_{i=1}^{n} |w_i^k| + |b^k|  \rightarrow \infty,
 \end{equation}
 dann muss also eines der Elemente der Vektoren $e$, $w$ oder $b$ betraglich gegen $\infty$ streben. Wegen $e \geq 0$ folgt weiterhin, dass $e$ nur gegen $+ \infty$ streben kann. Wegen $\| w \|_2^2 \geq 0$ folgt damit für beliebige $w$ und $b$, dass für $e_i \rightarrow \infty$ auch $\lim\limits_{k} f(w, b, e) = + \infty$ gilt. Selbiges gilt für ein beliebiges $w_i \rightarrow \pm \infty$ aufgrund der Koerzivität der Zwei-Norm. Betrachten wir nun die Fälle $b \rightarrow \pm \infty$. Wegen $\exists i,j \in \{1,...,m \} : y_i = -1, y_j = 1$ folgt, dass es mindestens ein $i$ gibt, sodass $1 - y_i (w^Tx^i + b) \infty$ für $b \rightarrow \infty$ und ein $j$ gibt sodass $1 - y_i (w^Tx^i + b) \infty$ für $b \rightarrow -\infty$. Damit folgt aus den Nebenbedingungen, dass mindestens ein Element aus $e \rightarrow \infty$ womit auch $f \rightarrow \infty$ geht. Insgesamt folgt, dass für jede Folge $(x^k) \subseteq M$ mit $\lim_k \| x^k \| \rightarrow \infty$ auch
 \begin{equation*}
 	\lim\limits_{k} f(x^k) = +\infty
 \end{equation*}
 gilt. Damit ist $f$ nach Definition 1.2.40 koerziv. Aus $M \neq \emptyset$, der Stetigkeit von $f$ (als Komposition stetiger Funktionen) und der Koerzivität von $f$ folgt mit Korollar 1.2.43 die Lösbarkeit des Problems $SVM$. \par
-(b) Ja. \par
+(b) Sei $\theta = (w^T, b, e^T)^T$, dann gilt für die Hessematrix der Zielfunktion
+\begin{equation*}
+	D^2 f(\theta) = \begin{pmatrix}
+	2\lambda &0 &0 \\
+	0 & 0 & 0 \\
+	0 & 0 & 0 
+	\end{pmatrix} \succeq 0
+\end{equation*}
+und damit, dass $f$ nach Satz 2.5.3 konvex ist. Wir merken an, dass die positive Definitiheit aus Satz 6 a) der mathematischen Grundlagen folgt, da die Eigenwerte einer Diagonalmatrix ihre Diagonalelemente sind und wegen $\lambda \geq 0$ gilt, dass der Kleinste Eigenwert der Hessematrix $0$ ist. Da die Nebenbedingungen lineare Funktionen und damit insbesondere konvexe Funktionen sind gilt mit Definition 2.1.10 und Lemma 2.1.11 das die zulässige Menge $M$ konvex ist. Aufgrund der Konvexität von $f$ und $M$ folgt mit Hilfe von Definition 2.1.15, dass es sich bei $SVM$ um ein konvexes Optimierungsproblem handelt.
+\par
 (c) Siehe Python. \par
-(d) Siehe Python. Wir erreichen eine Accuracy von $97 \%$.
+(d) Siehe Python. Wir erreichen eine Accuracy von $97 \%$. Die Accuracy ergibt sich dabei als
+\begin{equation}
+	acc = \frac{1}{k} \sum_{i=1}^{k} \mathbf{1}_{ \{ y_i=\hat{y_i}\} }
+\end{equation}
+wobei $\hat{y_i} \in \{0, 1\}$ das vorhergesagte Label von Datenpunkt $i$ ist und $k$ die Anzahl an Datenpunkten in unserem Trainingsdatenset beschreibt.
 \end{document}
