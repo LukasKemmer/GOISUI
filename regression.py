@@ -51,6 +51,9 @@ plt.xlabel("x")
 plt.ylabel("y")
 plt.legend(['Data', 'Fit from P1', 'Fit from P2'])
 plt.show()
+print("Optimale Punkte ohne Ausreisser: ")
+print("(a^1, b^1) = ({}, {})".format(np.round(beta_p1[0], 2), np.round(beta_p1[1],2)))
+print("(a^2, b^2) = ({}, {})".format(np.round(beta_p2[0], 2), np.round(beta_p2[1],2)))
 
 ##########################################################
 # d) Datenpunkte hinzufügen und b), c) wiederholen
@@ -84,6 +87,9 @@ plt.xlabel("x")
 plt.ylabel("y")
 plt.legend(['Data', 'Fit from P1', 'Fit from P2'])
 plt.show()
+print("Optimale Punkte mit Ausreissern: ")
+print("(a^1, b^1) = ({}, {})".format(np.round(beta_p1[0], 2), np.round(beta_p1[1],2)))
+print("(a^2, b^2) = ({}, {})".format(np.round(beta_p2[0], 2), np.round(beta_p2[1],2)))
 
 # Note:     Wie zu erwarten reagiert P2 aufgrund des quadratischen Fehlerterms 
 #           sensibler auf das Hinzufügen von Ausreissern
