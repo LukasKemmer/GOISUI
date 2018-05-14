@@ -67,16 +67,14 @@ Sommersemester 2018
 
 \begin{table}[h]
 	\centering
-	\begin{tabularx}{\textwidth}{X X X}
-		Name & Matrikelnummer & Studiengang \\
+	\begin{tabularx}{\textwidth}{X X X X X}
+		 & Vorname & Nachname & Matr.Nr. & Bachelor / Master \\
 		\toprule
-		Leon Qadirie					& 1720201 & Wi.Ing. (M.Sc)\\
-		Lukas Kemmer 				& 1725171			& Wi.Ing. (M.Sc)\\
+		1. Mitglied & Leon & Qadirie & 1720201 &  Master\\
+		2. Mitglied & Lukas & Kemmer & 1725171 &  Master\\
 		\bottomrule
 	\end{tabularx}
-
 \end{table}
-
 \textbf{Aufgabe S1.1} \\
 %(a) Sei $\bar{d} = (0, -1)^T \in \mathbb{R}^2 \backslash \{0\}$ dann folgt
 %\begin{equation}
@@ -127,7 +125,7 @@ Die Koerzivität für $\varphi_d(t)$ folgt wie in Fall 2. Insgesamt folgt mit De
 	\lim\limits_{k} f(x^k) = \lim\limits_{k} (2k^2-k^2)(k^2-k^2) = 0,
 \end{equation}
 und damit, dass eine Folge $(x^k) \in \mathbb{R}^2$ existiert mit $lim_k ||x^k||_1 \rightarrow \infty$ die die Bedingung $\lim_k f(x^k) = + \infty$ aus Definition 1.2.40 verletzt. Damit ist $f$ nicht koerziv. \par
-(c) Sei $f: M \rightarrow Y$ eine koerzive Funktion auf $M$ mit $Y \subseteq \mathbb{R}$. Dann gilt für alle Folgen $(x^k) \subseteq M$ mit $\lim_{k} \Vert x^k \| = \infty$ nach Definition 1.2.40 auch
+(c) Sei $f: M \rightarrow Y$ eine koerzive Funktion auf $M$ mit $Y \subseteq \mathbb{R}$. Dann gilt für alle Folgen $(x^k) \subseteq M$ mit $\lim_{k} \Vert x^k \| \rightarrow \infty$ nach Definition 1.2.40 auch
 \begin{equation*}
 \lim\limits_{k} f(x^k) = + \infty .
 \end{equation*}
@@ -161,13 +159,13 @@ und damit insbesondere, dass die Definition 1.2.40 nicht erfüllt und somit $\ps
 \end{equation*}
 Das Problem $P1$ kann dann geschrieben werden als
 \begin{equation*}
-	P_1: \min_{\beta_1} F(f(\beta_1)).
+	P_1: \min_{\beta_1 \in \mathbb{R}^{n+1}} F(f(\beta_1)).
 \end{equation*}
-Wir merken an, dass $F$ als Summe monotoner Funktionen wiederum monoton ist. Mithilfe der verallgemeinerten Epigraph-Umformulierung ergibt sich analog zu Übung 3.5 (im Buch) das äquivalente Optimierungsproblem
+Wir merken an, dass $F$ nach Definition 1.3.8 offensichtlich ein monotones Funktional ist. Mithilfe der verallgemeinerten Epigraph-Umformulierung ergibt sich analog zu Übung 3.5 (im Buch) das äquivalente Optimierungsproblem
 \begin{equation*}
 	P_{1, epi}:\min_{\alpha \in \mathbb{R}^m, \beta_1 \in \mathbb{R}^{n+1}} F(\alpha) \ s.t. \ f(\beta_1) \leq \alpha.
 \end{equation*}
-Da jede Nebenbedingung der Form $\max\{z_1, z_2\} \leq \gamma, z_1, z_2, \gamma \in \mathbb{R}$ in zwei Nebenbedingungen $z_1 \leq \gamma, \ z_2 \leq \gamma$ umgeformt werden kann, kann $P_{epi}$ in das äquivalente lineare Optimierungsproblem 
+Da jede Nebenbedingung der Form $\max\{z_1, z_2\} \leq \gamma, z_1, z_2, \gamma \in \mathbb{R}$ in zwei Nebenbedingungen $z_1 \leq \gamma, \ z_2 \leq \gamma$ umgeformt werden kann, kann $P_{epi, 1}$ in das äquivalente lineare Optimierungsproblem 
 \begin{equation*}
 	\begin{split}
 	P_{1, lin}: \min_{\alpha \in \mathbb{R}^m, \beta_1 \in \mathbb{R}^{n+1}} & \sum_{i=1}^{m} \alpha_i \\
@@ -180,16 +178,16 @@ Da jede Nebenbedingung der Form $\max\{z_1, z_2\} \leq \gamma, z_1, z_2, \gamma 
 	\end{split}
 \end{equation*}
 mit $2m$ Restriktionen umgeformt werden. \par
-(b) Hinweis: Wie in der Übung abgesprochen setzen wir die Lösbarkeit der Probleme voraus.\par Zur Lösung von $P_1$ in Python definieren wir zunächst die Vektoren $\tilde{\beta_1} = (\alpha^T, \beta_1^T)^T \in \mathbb{R}^{m+n}$, $c = (1^T, 0^T)^T \in \mathbb{R}^{m+n}$ (mit $m$ Einsen und $n$ Nullen) und $\tilde{y}= (y^T, -y^T)^T \in \mathbb{R}^{2m}$ sowie die Matrix
+(b) Hinweis: Wie in der Übung abgesprochen setzen wir die Lösbarkeit der Probleme voraus.\par Zur Lösung von $P_1$ in Python definieren wir zunächst die Vektoren $\tilde{\beta_1} = (\alpha^T, \beta_1^T)^T \in \mathbb{R}^{m+n+1}$, $c = (1^T, 0^T)^T \in \mathbb{R}^{m+n+1}$ (mit $m$ Einsen und $n+1$ Nullen) und $\tilde{y}= (y^T, -y^T)^T \in \mathbb{R}^{2m}$ sowie die Matrix
 \begin{equation*}
 	A = \begin{pmatrix}
 					-I &X \\
 					-I & -X \\
-					\end{pmatrix} \in \mathbb{R}^{2m \ \times \ (m+n)},
+					\end{pmatrix} \in \mathbb{R}^{2m \ \times \ (m+n+1)},
 \end{equation*}
 mit $I$ der Einheitsmatrix. Das Problem $P_{1, lin}$ kann dann geschrieben werden als
 \begin{equation*}
-	P_{1, lin}: \min_{\tilde{\beta_1} \in \mathbb{R}^{m+n} } c^T \tilde{\beta_1} \ s.t. \ A \tilde{\beta_1} \leq \tilde{y}
+	P_{1, lin}: \min_{\tilde{\beta_1} \in \mathbb{R}^{m+n+1} } c^T \tilde{\beta_1} \ s.t. \ A \tilde{\beta_1} \leq \tilde{y}
 \end{equation*}
 und auch so in den linearen Solver von Python eingegeben werden. \par
 Für Problem $P_2$ können wir nach einer geeigneten äquivalenten Transformation eine analytische Lösung herleiten. Sei $\beta_2 = (a^T, b^T)^T \in \mathbb{R}^{n+1}$ und $\psi: \mathbb{R}_+ \rightarrow \mathbb{R}$ mit $\psi(y)=0.5y^2$, dann ist $\psi$ wegen $\psi'(y)=y > 0$ auf $(0, \infty)$ streng monoton wachsend auf dem, den Rand $0$ einschließenden, Intervall $\left[0, \infty \right)$. Mithilfe der Funktion $\psi$ kann $P_2$ nun durch eine monotone Transformation (siehe Buch, Übung 1.3.5) in das äquivalente Problem $P_{2, MR}$ stransformiert werden mit
@@ -204,7 +202,7 @@ Für Problem $P_2$ können wir nach einer geeigneten äquivalenten Transformatio
 %\end{split}
 %\end{equation*}
 %da die Matrix $X$ vollen Rang hat, sofern $\exists \ i,j \in {1, ...m ,}: i \neq j \wedge x^i \neq x^j$. Damit ist $g(\beta)$ nach Definition 2.1.1 (d) gleichmäßig konvex (beachte, dass $\mathbb{R}^{n+1}$ eine konvexe Menge ist). Nach Lemma 2.3.2 folgt damit, und dem Fakt dass der $\mathbb{R}^{n+1}$ trivialerweise abgeschlossen ist, dass $P_{2, mr}$ mit Korollar 1.2.43 und Satz 1.2.5 lösbar ist. Aufgrund der Konvexität von $g$ und dem $\mathbb{R}^{n+1}$ ist $P_{2,MR}$ nach Definition 2.1.5 ein konvexes Optimierungsproblem. Aus Korollar 2.4.6 folgt, dass die Globalen Minimalpunkte von $g$ genau den kritischen Punkte entsprechen. Es folgt
-Wegen $\psi''=1>0$ ist $\psi$ nach der $C^2$ charakterisierung konvex. Mithilfe von Übung 4.6 folgt, dass auch $g(\beta_2) = 0.5 \| X \beta_2 - y \|_2^2$ konvex ist. Aufgrund der Konvexität von $g$ und dem $\mathbb{R}^{n+1}$ ist $P_{2,MR}$ nach Definition 2.1.5 ein konvexes Optimierungsproblem. Aus Korollar 2.4.6 folgt, dass die Globalen Minimalpunkte von $g$ genau den kritischen Punkte entsprechen. Es folgt
+Sei $f_2: \mathbb{R}^m \rightarrow \mathbb{R}, f_2(x) = 0.5 \| x \|_2^2$ mit $D^2f_2(x)=I$. Bei Diagonalmatritzen sind die Eigenwerte genau die Elemente auf der Diagonalen und damit $\lambda_{min} =1 \geq 0$. Damit ist $I$ nach Satz 6 der mathematischen Grundlagen positiv semidefinit. Mithilfe von Übung 4.6 folgt, dass auch $g(\beta_2) = f_2(X \beta_2 - y) = 0.5 \| X \beta_2 - y \|_2^2$ konvex ist. Aufgrund der Konvexität von $g$ und dem $\mathbb{R}^{n+1}$ ist $P_{2,MR}$ nach Definition 2.1.5 ein konvexes Optimierungsproblem. Aus Korollar 2.4.6 folgt, dass die globalen Minimalpunkte von $g$ genau den kritischen Punkten entsprechen. Es folgt
 \begin{equation}
 \label{eq:mr}
 	\begin{split}
@@ -222,18 +220,18 @@ Dabei sei angemerkt, dass $X^TX$ invertierbar ist, da $X$ vollen Spalten-Rang ha
 	\caption{\label{fig:21c} Ergebnisse der Regression ohne Ausreisser mit $(a^1, b^2) = (2.99, -11.26)$ und $(a^2, b^2) = (3.38, -13.45)$.}
 \end{figure}
 \par
-(d) Der Code zur Lösung ist im File regression.py enthalten. Wir erkennen klar, dass das Hinzufügen von Außreissern einen stärkeren Effekt auf das Model $P_2$ hat. Dies ist wenig verwunderlich, da die quadratische Zielfunktion stärker von Außreissern beeinflusst wird. Wir sehen in Abbildung \ref{fig:21d} gut, wie die beiden Datenpunkte \glqq links-oben\grqq \ die grüne Gerade \glqq hochziehen\grqq. \par
+(d) Der Code zur Lösung ist im File regression.py enthalten. Wir erkennen klar, dass das Hinzufügen von Außreissern einen stärkeren Effekt auf das Model aus $P_2$ hat. Dies ist wenig verwunderlich, da die quadratische Zielfunktion stärker von Außreissern beeinflusst wird. Wir sehen in Abbildung \ref{fig:21d} gut, wie die beiden Datenpunkte \glqq links-oben\grqq \ die grüne Gerade \glqq hochziehen\grqq. Der Ansatz aus $P_1$ ist damit robuster. \par
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\columnwidth]{21d.png}
 	\caption{\label{fig:21d} Ergebnisse der Regression mit Ausreissern mit $(a^1, b^2) = (2.97, -11.11)$ und $(a^2, b^2) = (1.82, -2.68)$.}
 \end{figure}
 \textbf{Aufgabe S1.3} \par
-(a) Es gilt für $\bar{w}=0, \bar{b}=0, \bar{e}=1, \ (\bar{w}, \bar{b}, \bar{e}) \in M$ und damit $M\neq \emptyset$. Nun zeigen wir die Koerzivität der Zielfunktion $f: \mathbb{R}^{m+n+1} \rightarrow \mathbb{R}$, $f(w,b,e) = \frac{1}{m} \sum_{i=1}^{m}e_i + \lambda \|w \|_2^2$. Sei nun $(x^k) \subseteq M$ eine Folge mit 
+(a) Es gilt für $\bar{w}=0, \bar{b}=0, \bar{e}=1, \ (\bar{w}, \bar{b}, \bar{e}) \in M$ und damit $M\neq \emptyset$ (mit $M$ der, in der Aufgabenstellung beschriebenen zulässigen Menge). Nun zeigen wir die Koerzivität der Zielfunktion $f: \mathbb{R}^{m+n+1} \rightarrow \mathbb{R}$, $f(w,b,e) = \frac{1}{m} \sum_{i=1}^{m}e_i + \lambda \|w \|_2^2$. Sei nun $(x^k) = ( (w^k)^T, (b^k)^T, (e^k)^T)^T \subseteq M$ eine Folge mit 
 \begin{equation}
 	\lim\limits_{k} \| x^k \|_1 = \sum_{i=1}^{m}|e_i^k| + \sum_{i=1}^{n} |w_i^k| + |b^k|  \rightarrow \infty,
 \end{equation}
-dann muss also eines der Elemente der Vektoren $e$, $w$ oder $b$ betraglich gegen $\infty$ streben. Wegen $e \geq 0$ folgt weiterhin, dass $e$ nur gegen $+ \infty$ streben kann. Wegen $\| w \|_2^2 \geq 0$ folgt damit für beliebige $w$ und $b$, dass für $e_i \rightarrow \infty$ auch $\lim\limits_{k} f(w, b, e) = + \infty$ gilt. Selbiges gilt für ein beliebiges $w_i \rightarrow \pm \infty$ aufgrund der Koerzivität der Zwei-Norm. Betrachten wir nun die Fälle $b \rightarrow \pm \infty$. Wegen $\exists i,j \in \{1,...,m \} : y_i = -1, y_j = 1$ folgt, dass es mindestens ein $i$ gibt, sodass $1 - y_i (w^Tx^i + b) \infty$ für $b \rightarrow \infty$ und ein $j$ gibt sodass $1 - y_i (w^Tx^i + b) \infty$ für $b \rightarrow -\infty$. Damit folgt aus den Nebenbedingungen, dass mindestens ein Element aus $e \rightarrow \infty$ womit auch $f \rightarrow \infty$ geht. Insgesamt folgt, dass für jede Folge $(x^k) \subseteq M$ mit $\lim_k \| x^k \| \rightarrow \infty$ auch
+dann muss also eines der Elemente der Vektoren $e^k$, $w^k$ oder $b^k$ betraglich gegen $\infty$ streben. Wegen $e \geq 0$ folgt weiterhin, dass $e$ nur gegen $+ \infty$ streben kann. Wegen $\| w \|_2^2 \geq 0$ folgt damit für beliebige $w$ und $b$, dass für ein $\lim_k e_i^k \rightarrow \infty$ auch $\lim\limits_{k} f(x^k) = + \infty$ gilt. Selbiges gilt für ein beliebiges $\lim_k w_i^k \rightarrow \pm \infty$ aufgrund der Koerzivität der quadrierten Zwei-Norm. Betrachten wir nun die Fälle $b \rightarrow \pm \infty$. Wegen $\exists i,j \in \{1,...,m \} : y_i = -1, y_j = 1$ folgt, dass es ein $i$ gibt, sodass $1 - y_i (w^Tx^i + b) = \infty$ für $b \rightarrow \infty$ und ein $j$ gibt sodass $1 - y_i (w^Tx^i + b) = \infty$ für $b \rightarrow -\infty$. Damit folgt aus den Nebenbedingungen, dass mindestens ein Element aus $e$ gegen $\infty$ geht womit auch $f \rightarrow \infty$ geht. Insgesamt folgt, dass für jede Folge $(x^k) \subseteq M$ mit $\lim_k \| x^k \| \rightarrow \infty$ auch
 \begin{equation*}
 	\lim\limits_{k} f(x^k) = +\infty
 \end{equation*}
@@ -246,7 +244,7 @@ gilt. Damit ist $f$ nach Definition 1.2.40 koerziv. Aus $M \neq \emptyset$, der 
 	0 & 0 & 0 
 	\end{pmatrix} \succeq 0
 \end{equation*}
-und damit, dass $f$ nach Satz 2.5.3 konvex ist. Wir merken an, dass die positive Definitiheit aus Satz 6 a) der mathematischen Grundlagen folgt, da die Eigenwerte einer Diagonalmatrix ihre Diagonalelemente sind und wegen $\lambda \geq 0$ gilt, dass der Kleinste Eigenwert der Hessematrix $0$ ist. Da die Nebenbedingungen lineare Funktionen und damit insbesondere konvexe Funktionen sind gilt mit Definition 2.1.10 und Lemma 2.1.11 das die zulässige Menge $M$ konvex ist. Aufgrund der Konvexität von $f$ und $M$ folgt mit Hilfe von Definition 2.1.15, dass es sich bei $SVM$ um ein konvexes Optimierungsproblem handelt.
+und damit, dass $f$ nach Satz 2.5.3 konvex ist. Wir merken an, dass die positive Definitiheit aus Satz 6 a) der mathematischen Grundlagen folgt, da die Eigenwerte einer Diagonalmatrix ihre Diagonalelemente sind und wegen $\lambda \geq 0$ gilt, dass der kleinste Eigenwert der Hessematrix $0$ ist. Da die Nebenbedingungen lineare Funktionen und damit insbesondere konvexe Funktionen sind gilt mit Definition 2.1.10 und Lemma 2.1.11 das die zulässige Menge $M$ konvex ist. Aufgrund der Konvexität von $f$ und $M$ folgt mit Hilfe von Definition 2.1.15, dass es sich bei $SVM$ um ein konvexes Optimierungsproblem handelt.
 \par
 (c) Siehe Python. \par
 (d) Siehe Python. Wir erreichen eine Accuracy von $97 \%$. Die Accuracy ergibt sich dabei als
