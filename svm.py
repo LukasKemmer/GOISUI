@@ -52,7 +52,7 @@ svm_grad = lambda x : np.concatenate((2*l*x[0:n], np.zeros(1), 1/m * np.ones((m)
 
 # set constraints
 cons = ({'type': 'ineq', 'fun': lambda x: x[n+1:]}, # e >= 0
-        {'type': 'ineq', 'fun': lambda x: -np.ones((m,)) + x[n+1:] # -1 + e -y * (Xw+b) >=0
+        {'type': 'ineq', 'fun': lambda x: -np.ones((m,)) + x[n+1:] # -1 + e + y * (Xw+b) >=0
         + y_training * (np.dot(X_training, x[0:n]) + x[n])}) # mit * als elementweiser Multiplikation
 
 # Run optimization
@@ -77,4 +77,7 @@ y_pred[y_pred<0] = -1
 
 # Calculate accuracy
 acc = np.sum(y_pred==y_test)/len(y_test)
+print("Globaler Minimalpunkt: (w*,b*,e*) = ({}, {}, {})".format(np.round(w, 2), 
+                               np.round(b, 2),
+                               np.round(e, 2)))
 print("Accuracy:",np.round(acc,2))
